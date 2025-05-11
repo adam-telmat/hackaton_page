@@ -1,0 +1,720 @@
+  <!DOCTYPE html>
+  <html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOMI - Votre mission. Notre Freelance.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      :root {
+        --primary: #3a0ca3;
+        --secondary: #4361ee;
+        --accent: #4cc9f0;
+        --success: #06d6a0;
+        --warning: #ffd166;
+        --danger: #ef476f;
+        --dark: #1a1a2e;
+        --light: #f8f9fa;
+        --gradient: linear-gradient(120deg, var(--primary), var(--secondary), var(--accent));
+      }
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      body {
+        background-color: #f0f2f5;
+        color: var(--dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      
+      .header {
+        background: var(--gradient);
+        padding: 2rem 0;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+      
+      .header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 10%);
+        background-size: 20px 20px;
+        opacity: 0.3;
+        z-index: 0;
+        animation: rotate 120s linear infinite;
+      }
+      
+      @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .header-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+      
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+      
+      .logo-img {
+        width: 60px;
+        height: 60px;
+        background-color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      }
+      
+      .logo-img i {
+        font-size: 30px;
+        color: var(--primary);
+      }
+      
+      .logo-text {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: white;
+        letter-spacing: 1px;
+      }
+      
+      .tagline {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .search-bar {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 50px;
+        padding: 10px 20px;
+        display: flex;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .search-input {
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 10px;
+        font-size: 1rem;
+      }
+      
+      .search-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      
+      .search-btn:hover {
+        background: var(--secondary);
+        transform: translateY(-2px);
+      }
+      
+      .main {
+        padding: 3rem 0;
+      }
+      
+      .section-title {
+        text-align: center;
+        margin-bottom: 2.5rem;
+        position: relative;
+        font-size: 2rem;
+        color: var(--primary);
+      }
+      
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: var(--gradient);
+        border-radius: 3px;
+      }
+      
+      .stats {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+      
+      .stat-item {
+        background: white;
+        border-radius: 15px;
+        padding: 1.5rem;
+        text-align: center;
+        width: 200px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+      }
+      
+      .stat-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+      }
+      
+      .stat-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+      .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--dark);
+      }
+      
+      .stat-label {
+        color: #666;
+        font-size: 0.9rem;
+      }
+      
+      .matches-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      
+      .match-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      
+      .match-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+      
+      .match-score {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: var(--primary);
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        font-weight: 700;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        border: 3px solid white;
+        z-index: 10;
+      }
+      
+      .high-score {
+        background: var(--success);
+      }
+      
+      .medium-score {
+        background: var(--warning);
+        color: var(--dark);
+      }
+      
+      .low-score {
+        background: var(--danger);
+      }
+      
+      .match-header {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        background: rgba(67, 97, 238, 0.05);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      
+      .profile-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 15px;
+        object-fit: cover;
+        margin-right: 15px;
+        border: 3px solid white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+      
+      .profile-info {
+        flex: 1;
+      }
+      
+      .profile-name {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: var(--dark);
+      }
+      
+      .profile-title {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 8px;
+      }
+      
+      .profile-location {
+        font-size: 0.9rem;
+        color: #888;
+        display: flex;
+        align-items: center;
+      }
+      
+      .profile-location i {
+        margin-right: 5px;
+        color: var(--accent);
+      }
+      
+      .match-body {
+        padding: 20px;
+      }
+      
+      .match-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--primary);
+      }
+      
+      .match-description {
+        font-size: 0.95rem;
+        color: #444;
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+      
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 15px;
+      }
+      
+      .skill {
+        background: rgba(67, 97, 238, 0.1);
+        color: var(--secondary);
+        font-size: 0.8rem;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-weight: 500;
+      }
+      
+      .match-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      
+      .match-btn {
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+      }
+      
+      .match-btn i {
+        margin-right: 8px;
+      }
+      
+      .contact-btn {
+        background: var(--primary);
+        color: white;
+        flex: 2;
+        margin-right: 10px;
+      }
+      
+      .contact-btn:hover {
+        background: var(--secondary);
+      }
+      
+      .save-btn {
+        background: rgba(0, 0, 0, 0.05);
+        color: #444;
+        flex: 1;
+      }
+      
+      .save-btn:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      
+      .footer {
+        background: var(--dark);
+        color: white;
+        padding: 3rem 0;
+        text-align: center;
+        position: relative;
+      }
+      
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .fade-in-up {
+        animation: fadeInUp 0.5s ease forwards;
+      }
+      
+      @media (max-width: 768px) {
+        .matches-grid {
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+        .stat-item {
+          width: 150px;
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-content">
+        <div class="logo">
+          <div class="logo-img">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <div class="logo-text">MOMI</div>
+        </div>
+        <p class="tagline">Votre mission. Notre Freelance. Maintenant !</p>
+        <div class="search-bar">
+          <input type="text" class="search-input" placeholder="Rechercher un talent, une compétence, un projet...">
+          <button class="search-btn">Rechercher</button>
+        </div>
+      </div>
+    </header>
+    
+    <main class="main">
+      <div class="container">
+        <h2 class="section-title">Tableau de bord</h2>
+        
+        <div class="stats">
+          <div class="stat-item fade-in-up" style="animation-delay: 0.1s;">
+            <div class="stat-icon"><i class="fas fa-user-tie"></i></div>
+          <div class="stat-number">24</div>
+            <div class="stat-label">Freelances</div>
+          </div>
+          <div class="stat-item fade-in-up" style="animation-delay: 0.2s;">
+            <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="stat-number">18</div>
+            <div class="stat-label">Opportunités</div>
+          </div>
+          <div class="stat-item fade-in-up" style="animation-delay: 0.3s;">
+            <div class="stat-icon"><i class="fas fa-handshake"></i></div>
+          <div class="stat-number">12</div>
+            <div class="stat-label">Matchs réalisés</div>
+          </div>
+          <div class="stat-item fade-in-up" style="animation-delay: 0.4s;">
+            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+          <div class="stat-number">87%</div>
+            <div class="stat-label">Score moyen</div>
+          </div>
+        </div>
+        
+        <h2 class="section-title">Matchs proposés</h2>
+        
+        <div class="matches-grid" id="matches-container">
+        <!-- Match 1 -->
+        <div class="match-card fade-in-up" style="animation-delay: 0.1s;">
+          <div class="match-score high-score">95%</div>
+          <div class="match-header">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Sophie Martin" class="profile-img">
+            <div class="profile-info">
+              <h3 class="profile-name">Sophie Martin</h3>
+              <p class="profile-title">UX Designer</p>
+              <p class="profile-location"><i class="fas fa-map-marker-alt"></i> Paris</p>
+            </div>
+          </div>
+          <div class="match-body">
+            <h4 class="match-title">Refonte d'interface utilisateur</h4>
+            <p class="match-description">Recherche d'un expert UX pour redesigner notre application avec un focus sur l'accessibilité et l'expérience utilisateur.</p>
+            <div class="skills">
+              <span class="skill">UI/UX</span>
+              <span class="skill">Figma</span>
+              <span class="skill">Wireframing</span>
+              <span class="skill">Adobe XD</span>
+              <span class="skill">Prototypage</span>
+            </div>
+            <div class="match-actions">
+              <button class="match-btn contact-btn"><i class="fas fa-envelope"></i> Contacter</button>
+              <button class="match-btn save-btn"><i class="fas fa-bookmark"></i> Sauvegarder</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Match 2 -->
+        <div class="match-card fade-in-up" style="animation-delay: 0.2s;">
+          <div class="match-score high-score">92%</div>
+          <div class="match-header">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e" alt="Thomas Dubois" class="profile-img">
+            <div class="profile-info">
+              <h3 class="profile-name">Thomas Dubois</h3>
+              <p class="profile-title">Développeur Full Stack</p>
+              <p class="profile-location"><i class="fas fa-map-marker-alt"></i> Lyon</p>
+            </div>
+          </div>
+          <div class="match-body">
+            <h4 class="match-title">Développement plateforme e-commerce</h4>
+            <p class="match-description">Création d'une API REST performante et sécurisée pour notre nouvelle plateforme e-commerce.</p>
+            <div class="skills">
+              <span class="skill">JavaScript</span>
+              <span class="skill">Node.js</span>
+              <span class="skill">React</span>
+              <span class="skill">MongoDB</span>
+              <span class="skill">Express</span>
+            </div>
+            <div class="match-actions">
+              <button class="match-btn contact-btn"><i class="fas fa-envelope"></i> Contacter</button>
+              <button class="match-btn save-btn"><i class="fas fa-bookmark"></i> Sauvegarder</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Match 3 -->
+        <div class="match-card fade-in-up" style="animation-delay: 0.3s;">
+          <div class="match-score high-score">88%</div>
+          <div class="match-header">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e" alt="Emma Laurent" class="profile-img">
+            <div class="profile-info">
+              <h3 class="profile-name">Emma Laurent</h3>
+              <p class="profile-title">Data Scientist</p>
+              <p class="profile-location"><i class="fas fa-map-marker-alt"></i> Bordeaux</p>
+            </div>
+          </div>
+          <div class="match-body">
+            <h4 class="match-title">Système de recommandation IA</h4>
+            <p class="match-description">Développement d'un algorithme de recommandation basé sur l'IA pour personnaliser l'expérience de nos utilisateurs.</p>
+            <div class="skills">
+              <span class="skill">Python</span>
+              <span class="skill">Machine Learning</span>
+              <span class="skill">TensorFlow</span>
+              <span class="skill">Data Analysis</span>
+              <span class="skill">SQL</span>
+            </div>
+            <div class="match-actions">
+              <button class="match-btn contact-btn"><i class="fas fa-envelope"></i> Contacter</button>
+              <button class="match-btn save-btn"><i class="fas fa-bookmark"></i> Sauvegarder</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Match 4 -->
+        <div class="match-card fade-in-up" style="animation-delay: 0.4s;">
+          <div class="match-score medium-score">78%</div>
+          <div class="match-header">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e" alt="Paul Moreau" class="profile-img">
+            <div class="profile-info">
+              <h3 class="profile-name">Paul Moreau</h3>
+              <p class="profile-title">DevOps Engineer</p>
+              <p class="profile-location"><i class="fas fa-map-marker-alt"></i> Toulouse</p>
+            </div>
+          </div>
+          <div class="match-body">
+            <h4 class="match-title">Infrastructure Cloud Sécurisée</h4>
+            <p class="match-description">Mise en place d'une infrastructure cloud sécurisée et évolutive pour notre startup en pleine croissance.</p>
+            <div class="skills">
+              <span class="skill">AWS</span>
+              <span class="skill">Docker</span>
+              <span class="skill">Kubernetes</span>
+              <span class="skill">CI/CD</span>
+              <span class="skill">Terraform</span>
+            </div>
+            <div class="match-actions">
+              <button class="match-btn contact-btn"><i class="fas fa-envelope"></i> Contacter</button>
+              <button class="match-btn save-btn"><i class="fas fa-bookmark"></i> Sauvegarder</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Match 5 -->
+        <div class="match-card fade-in-up" style="animation-delay: 0.5s;">
+          <div class="match-score medium-score">75%</div>
+          <div class="match-header">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956" alt="Léa Petit" class="profile-img">
+            <div class="profile-info">
+              <h3 class="profile-name">Léa Petit</h3>
+              <p class="profile-title">Growth Hacker</p>
+              <p class="profile-location"><i class="fas fa-map-marker-alt"></i> Nantes</p>
+            </div>
+          </div>
+          <div class="match-body">
+            <h4 class="match-title">Stratégie d'acquisition utilisateurs</h4>
+            <p class="match-description">Élaboration et mise en œuvre d'une stratégie de croissance pour augmenter notre base d'utilisateurs.</p>
+            <div class="skills">
+              <span class="skill">Growth Hacking</span>
+              <span class="skill">Marketing Digital</span>
+              <span class="skill">SEO</span>
+              <span class="skill">Analytics</span>
+              <span class="skill">A/B Testing</span>
+            </div>
+            <div class="match-actions">
+              <button class="match-btn contact-btn"><i class="fas fa-envelope"></i> Contacter</button>
+              <button class="match-btn save-btn"><i class="fas fa-bookmark"></i> Sauvegarder</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Match 6 -->
+        <div class="match-card fade-in-up" style="animation-delay: 0.6s;">
+          <div class="match-score medium-score">70%</div>
+          <div class="match-header">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Marc Bernard" class="profile-img">
+            <div class="profile-info">
+              <h3 class="profile-name">Marc Bernard</h3>
+              <p class="profile-title">Mobile Developer</p>
+              <p class="profile-location"><i class="fas fa-map-marker-alt"></i> Lille</p>
+            </div>
+          </div>
+          <div class="match-body">
+            <h4 class="match-title">Application Mobile Native</h4>
+            <p class="match-description">Développement d'une application mobile cross-platform (iOS et Android) avec fonctionnalités de géolocalisation.</p>
+            <div class="skills">
+              <span class="skill">Flutter</span>
+              <span class="skill">Swift</span>
+              <span class="skill">Kotlin</span>
+              <span class="skill">Firebase</span>
+              <span class="skill">Maps API</span>
+            </div>
+            <div class="match-actions">
+              <button class="match-btn contact-btn"><i class="fas fa-envelope"></i> Contacter</button>
+              <button class="match-btn save-btn"><i class="fas fa-bookmark"></i> Sauvegarder</button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </main>
+    
+    <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">MOMI</div>
+        <p class="footer-text">Notre intelligence artificielle connecte les freelances avec les opportunités idéales, pour des collaborations réussies et un avenir professionnel épanoui.</p>
+        <p class="copyright">© 2025 MOMI - Matching Opportunities to Motivated Individuals. Tous droits réservés.</p>
+      </div>
+      </div>
+    </footer>
+  
+    <script>
+    // Animation pour les éléments au chargement
+      document.addEventListener('DOMContentLoaded', function() {
+      // Ajouter des interactions aux cartes
+      const cards = document.querySelectorAll('.match-card');
+      
+      cards.forEach(card => {
+        // Effet de pulse sur le score au survol
+        const score = card.querySelector('.match-score');
+        card.addEventListener('mouseenter', () => {
+          score.style.animation = 'pulse 1s infinite';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          score.style.animation = '';
+        });
+        
+        // Interaction avec les boutons
+        const contactBtn = card.querySelector('.contact-btn');
+        contactBtn.addEventListener('click', () => {
+          alert('Fonctionnalité de contact à implémenter');
+        });
+        
+        const saveBtn = card.querySelector('.save-btn');
+        saveBtn.addEventListener('click', function() {
+          this.innerHTML = this.innerHTML.includes('Sauvegardé') 
+            ? '<i class="fas fa-bookmark"></i> Sauvegarder' 
+            : '<i class="fas fa-check"></i> Sauvegardé';
+          
+          this.classList.toggle('saved');
+        });
+      });
+      
+      // Fonctionnalité de recherche
+      const searchInput = document.querySelector('.search-input');
+      const searchBtn = document.querySelector('.search-btn');
+      
+      searchBtn.addEventListener('click', () => {
+        const query = searchInput.value.toLowerCase();
+        
+        if (query) {
+          cards.forEach(card => {
+            const title = card.querySelector('.match-title').textContent.toLowerCase();
+            const desc = card.querySelector('.match-description').textContent.toLowerCase();
+            const skills = card.querySelectorAll('.skill');
+            
+            let hasSkill = false;
+            skills.forEach(skill => {
+              if (skill.textContent.toLowerCase().includes(query)) {
+                hasSkill = true;
+              }
+            });
+            
+            if (title.includes(query) || desc.includes(query) || hasSkill) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        } else {
+          cards.forEach(card => {
+            card.style.display = 'block';
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
